@@ -1,0 +1,65 @@
+package DataStructures;
+import java.util.Scanner;
+
+public class AddressCalculation {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        // Get the number of dimensions from the user
+        System.out.print("Enter the number of dimensions: ");
+        int dimensions = scanner.nextInt();
+
+        // Get the size of each dimension from the user
+        int[] sizes = new int[dimensions];
+        for (int i = 0; i < dimensions; i++) {
+            System.out.print("Enter Upper Bound " + (i + 1) + ": ");
+            sizes[i] = scanner.nextInt();
+        }
+
+        // Get the indices from the user
+        int[] indices = new int[dimensions];
+        for (int i = 0; i < dimensions; i++) {
+            System.out.print("Enter the index for dimension " + (i + 1) + ": ");
+            indices[i] = scanner.nextInt();
+        }
+
+        // Calculate and display the total number of elements
+        int totalElements = calculateTotalElements(sizes);
+        System.out.println("Total number of elements: " + totalElements);
+
+        // Get additional input for the second part
+        System.out.print("Enter the element size (esize): ");
+        int esize = scanner.nextInt();
+
+        System.out.print("Enter the alpha value: ");
+        int alpha = scanner.nextInt();
+
+        // Calculate and display the address
+        int address = calculateAddress(sizes, indices, esize, alpha);
+        System.out.println("Address of the element: " + address);
+
+        scanner.close();
+    }
+
+    // Calculate total number of elements based on array sizes
+    private static int calculateTotalElements(int[] sizes) {
+        int totalElements = 1;
+        for (int size : sizes) {
+            totalElements *= size;
+        }
+        return totalElements;
+    }
+
+    // Calculate address based on array sizes, indices, element size, and alpha
+    private static int calculateAddress(int[] sizes, int[] indices, int esize, int alpha) {
+        int address = 0;
+        for (int i = 0; i < sizes.length; i++) {
+            int multiplier = 1;
+            for (int j = i + 1; j < sizes.length; j++) {
+                multiplier *= sizes[j];
+            }
+            address += indices[i] * multiplier * esize * alpha;
+        }
+        return address;
+    }
+}
