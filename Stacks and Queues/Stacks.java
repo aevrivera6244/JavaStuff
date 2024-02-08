@@ -1,7 +1,7 @@
-import java.util.Stack;
 import java.util.Scanner;
+import java.util.Stack;
 
-public class Stacks {
+public class Stacks2 {
 
 	public static void main(String[] args) {
 		
@@ -10,55 +10,64 @@ public class Stacks {
 		Scanner scanner2 = new Scanner(System.in);
 		int top = -1;
 		
-		System.out.print("Enter value of container elements: ");
+		System.out.print("Enter value of stack elements: ");
 	    int ElemNum = scanner.nextInt();
 	    
-	    // Push
-	    
-		while(true)
-		{
-			top++;
-			if(top < ElemNum)
-			{
-				System.out.println("Enter Element[" + top + "]: ");
-		    	String Elem = scanner2.nextLine();
-		    	stack.add(Elem);
-		    	continue;
-			}
-			break;		    
-		}
-		System.out.println("Stack: " + stack);
-		
-		// Pop
-		top --;
-		while(true)
-		{
-			if(stack.empty() == false)
-			{
-				System.out.println();
-				System.out.println("Pop index [" + top + "]? ");
-				System.out.print("(1) Yes or (2) No: ");
-				int user = scanner.nextInt();
-				if(user == 1)
+	    while(true)
+	    {
+	    	System.out.println("\n(1) Push \n(2) Pop \n(3) Exit");
+		    System.out.print("Please select an operation: ");
+		    int Operation = scanner.nextInt();
+	    	if(Operation == 1)
+	    	{
+	    		System.out.println("\nPush() Selected.");
+	    		top++;
+				if(top < ElemNum)
+				{
+					System.out.print("Enter Element[" + top + "]: ");
+			    	String Elem = scanner2.nextLine();
+			    	stack.add(Elem);
+			    	System.out.println("Stack: " + stack);
+			    	continue;
+				}
+				else if(top >= ElemNum)
 				{
 					top--;
-					stack.pop();
-					System.out.println("Stack: " + stack);
+					System.out.println("Stack is Full");
 					continue;
 				}
-				else if(user == 2)
-				{
-					System.out.println("Stack: " + stack);
-					break;
-				}
-			}
-			else if(stack.empty() == true)
-			{
-				System.out.println("Stack is empty");
 				break;
-			}
-				
-		}
+	    	}
+	    	else if(Operation == 2)
+	    	{
+	    		System.out.println("\nPop() Selected.");
+				if(stack.empty() == false)
+				{
+					System.out.print("Popped Element[" + top + "]: " + stack.pop()+ "\n");
+					top--;
+			    	System.out.println("Stack: " + stack);
+			    	continue;
+				}
+				else if(stack.empty() == true)
+				{
+					System.out.println("Stack is Empty");
+					continue;
+				}
+				break;
+	    		
+	    	}
+	    	else if(Operation == 3)
+	    	{
+	    		System.out.println("Stack: " + stack);
+	    		break;
+	    	}
+	    	else
+	    	{
+	    		System.out.println("Error, please try again.");
+	    		continue;
+	    	}
+	    }
+	    
 	}
 
 }
