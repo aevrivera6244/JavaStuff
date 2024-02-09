@@ -1,8 +1,9 @@
+package DataStructures;
 import java.util.Queue;
 import java.util.LinkedList;
 import java.util.Scanner;
 
-public class Queueslab3 {
+public class Queueslab {
 
 	public static void main(String[] args) {
 		Queue<String> queue = new LinkedList<String>();
@@ -54,6 +55,10 @@ public class Queueslab3 {
 				else if(Operation == 3)
 				{
 					System.out.println("Queue: " + queue);
+					for(int i = 0; i < queue.size(); i++)
+			    	{
+			    		System.out.println("Element at index " + i + ": " + queue.toArray()[i]);
+			    	}
 					continue;
 				}
 				else if(Operation == 4)
@@ -107,12 +112,16 @@ public class Queueslab3 {
 					continue;
 				}
 			}
-			else if(Operation == 3)
+			else if(Operation == 3) // Display Queue
 			{
 				System.out.println("Queue: " + queue);
+				for(int i = 0; i < queue.size(); i++)
+		    	{
+		    		System.out.println("Element at index " + i + ": " + queue.toArray()[i]);
+		    	}
 				continue;
 			}
-			else if(Operation == 4)
+			else if(Operation == 4) // Exit
 			{
 				System.out.println("Queue: " + queue);
 				break;
