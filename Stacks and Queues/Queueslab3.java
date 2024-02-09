@@ -1,4 +1,4 @@
-// DO NOT USE, USE QUEUESLAB3FDL.java
+// DO NOT USE, USE QUEUESLAB3FDC.java
 import java.util.Queue;
 import java.util.LinkedList;
 import java.util.Scanner;
