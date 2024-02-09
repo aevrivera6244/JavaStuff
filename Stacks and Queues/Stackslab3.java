@@ -10,13 +10,13 @@ public class Stackslab3 {
 		Scanner scanner2 = new Scanner(System.in);
 		int top = -1;
 		
-		System.out.print("Enter value of stack elements(0 - infinite): ");
+		System.out.print("Enter value of stack elements(00 - infinite): ");
 	    int ElemNum = scanner.nextInt();
 	    int elemcount = -1;
 	    
 	    while(true)
 	    {
-	    	if(ElemNum == 0)
+	    	if(ElemNum == 00)
 	    	{
 	    		System.out.println("\n(1) Push \n(2) Pop \n(3) Display Stack \n(4) Exit");
 			    System.out.print("Please select an operation: ");
@@ -54,6 +54,10 @@ public class Stackslab3 {
 				else if(Operation == 3) // Display Stack
 			    {
 			    	System.out.println("Stack: " + stack);
+			    	for(int i = 0; i < stack.size(); i++)
+			    	{
+			    		System.out.println("Element at index " + i + ": " + stack.get(i));
+			    	}
 			    	continue;
 			    }
 			    else if(Operation == 4) // Exit
@@ -116,6 +120,10 @@ public class Stackslab3 {
 	    	else if(Operation == 3) // Display Stack
 	    	{
 	    		System.out.println("Stack: " + stack);
+	    		for(int i = 0; i < stack.size(); i++)
+		    	{
+		    		System.out.println("Element at index " + i + ": " + stack.get(i));
+		    	}
 	    		continue;
 	    	}
 	    	else if(Operation == 4) // Exit
