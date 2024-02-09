@@ -1,7 +1,7 @@
 import java.util.Scanner;
 import java.util.Stack;
 
-public class Stacks {
+public class Stackslab3 {
 
 	public static void main(String[] args) {
 		
