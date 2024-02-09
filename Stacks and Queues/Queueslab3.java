@@ -1,9 +1,8 @@
-package DataStructures;
 import java.util.Queue;
 import java.util.LinkedList;
 import java.util.Scanner;
 
-public class Queueslab {
+public class Queueslab3 {
 
 	public static void main(String[] args) {
 		Queue<String> queue = new LinkedList<String>();
