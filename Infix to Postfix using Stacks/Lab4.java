@@ -1,7 +1,7 @@
 import java.util.Scanner;
 import java.util.Stack;
 
-public class Lab4 {
+public class InfixToPostfix {
 
     static int precedence(char ch) {
         switch (ch) {
@@ -21,14 +21,19 @@ public class Lab4 {
     static String infixToPostfix(String expression) {
         StringBuilder result = new StringBuilder();
         Stack<Character> stack = new Stack<>();
+
         expression += "#"; // Add # to mark the end of the expression
 
         for (int i = 0; i < expression.length(); i++) {
             char c = expression.charAt(i);
 
             if (Character.isLetterOrDigit(c)) {
-                result.append(c);
+                // If the character is a digit, keep appending until a non-digit is encountered
+                while (i < expression.length() && (Character.isLetterOrDigit(expression.charAt(i)) || expression.charAt(i) == '.')) {
+                    result.append(expression.charAt(i++));
+                }
                 result.append(" "); // Add space for clarity
+                i--; // Adjust index to process the correct character next iteration
             } else if (c == '(') {
                 stack.push(c);
             } else if (c == ')') {
