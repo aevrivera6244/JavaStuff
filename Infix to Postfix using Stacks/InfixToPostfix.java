@@ -1,7 +1,7 @@
 import java.util.Scanner;
 import java.util.Stack;
 
-public class Lab4 {
+public class InfixToPostfix {
 
     static int precedence(char ch) {
         switch (ch) {
