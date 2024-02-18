@@ -1,7 +1,7 @@
 import java.util.Scanner;
 import java.util.Stack;
 
-public class arraystuff {
+public class InfixtoPostfix {
 
     static int precedence(char ch) {
         switch (ch) {
