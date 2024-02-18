@@ -1,7 +1,7 @@
 import java.util.Scanner;
 import java.util.Stack;
 
-public class InfixToPostfix {
+public class arraystuff {
 
     static int precedence(char ch) {
         switch (ch) {
@@ -21,8 +21,6 @@ public class InfixToPostfix {
     static String infixToPostfix(String expression) {
         StringBuilder result = new StringBuilder();
         Stack<Character> stack = new Stack<>();
-
-        expression += "#"; // Add # to mark the end of the expression
 
         for (int i = 0; i < expression.length(); i++) {
             char c = expression.charAt(i);
