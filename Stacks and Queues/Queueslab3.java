@@ -1,4 +1,5 @@
 // DO NOT USE, USE QUEUESLAB3FDC.java
+// Correction, this algorithm is actually correct
 import java.util.Queue;
 import java.util.LinkedList;
 import java.util.Scanner;
