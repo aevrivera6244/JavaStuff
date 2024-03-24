@@ -175,3 +175,163 @@ AVLNode rebalanceRoot(AVLNode node, int rootValue) {
     // Function to rebalance the AVL Tree if necessary
     AVLNode rebalance(AVLNode node) {
         int balance = balanceFactor(node);
+
+        // If the node is unbalanced, then perform rotations and rebalance
+        if (balance > 1) {
+            if (balanceFactor(node.left) >= 0)
+                return rightRotate(node);
+            else {
+                node.left = leftRotate(node.left);
+                return rightRotate(node);
+            }
+        } else if (balance < -1) {
+            if (balanceFactor(node.right) <= 0)
+                return leftRotate(node);
+            else {
+                node.right = rightRotate(node.right);
+                return leftRotate(node);
+            }
+        }
+
+        // Return the unchanged or balanced node pointer
+        return node;
+    }
+
+    // Function to find the inorder successor
+    AVLNode minValueNode(AVLNode node) {
+        AVLNode current = node;
+        while (current.left != null)
+            current = current.left;
+        return current;
+    }
+
+    // Function to get the balance factor of a node
+    int balanceFactor(AVLNode node) {
+        if (node == null)
+            return 0;
+        return height(node.left) - height(node.right);
+    }
+
+    // Function to print preorder traversal of AVL Tree
+    void preorderTraversal(AVLNode node) {
+        if (node != null) {
+            System.out.print(node.data + " ");
+            preorderTraversal(node.left);
+            preorderTraversal(node.right);
+        }
+    }
+
+    // Function to print inorder traversal of AVL Tree
+    void inorderTraversal(AVLNode node) {
+        if (node != null) {
+            inorderTraversal(node.left);
+            System.out.print(node.data + " ");
+            inorderTraversal(node.right);
+        }
+    }
+
+    // Function to print postorder traversal of AVL Tree
+    void postorderTraversal(AVLNode node) {
+        if (node != null) {
+            postorderTraversal(node.left);
+            postorderTraversal(node.right);
+            System.out.print(node.data + " ");
+        }
+    }
+
+    // Function to display AVL Tree as 1-D array
+    void updateTreeRepresentation() {
+        int maxDepth = maxDepth(root);
+        int arraySize = (int) Math.pow(2, maxDepth) - 1;
+        int[] arr = new int[arraySize];
+        treeToArray(root, arr, 0);
+        System.out.println("\n\n1-D Array Representation:");
+        System.out.printf("Size of array = 2^k - 1 = 2^%d - 1 = %d nodes\n", maxDepth, arraySize);
+
+        for (int i = 0; i < arraySize; i++) {
+            if (i > 0) {
+                System.out.print(" | ");
+            }
+            System.out.printf("%4d", i);
+        }
+        System.out.println();
+
+        for (int i = 0; i < arraySize; i++) {
+            if (i > 0) {
+                System.out.print(" | ");
+            }
+            System.out.printf("%4s", arr[i] == 0 ? "" : arr[i]);
+        }
+    }
+
+    // Function to convert AVL Tree to array representation
+    void treeToArray(AVLNode node, int[] arr, int index) {
+        if (node != null) {
+            arr[index] = node.data;
+            treeToArray(node.left, arr, 2 * index + 1);
+            treeToArray(node.right, arr, 2 * index + 2);
+        }
+    }
+
+    // Function to get the maximum depth of the AVL Tree
+    int maxDepth(AVLNode node) {
+        if (node == null)
+            return 0;
+        int leftDepth = maxDepth(node.left);
+        int rightDepth = maxDepth(node.right);
+        return Math.max(leftDepth, rightDepth) + 1;
+    }
+}
+
+class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        AVLTree tree = new AVLTree();
+        StringBuilder log = new StringBuilder();
+    
+        boolean done = false;
+        while (!done) {
+            System.out.print("Enter an integer to insert into the AVL Tree, 'delete' to delete a node, or 'done' to finish: ");
+            String choice = scanner.next();
+            if (choice.equals("done")) {
+                done = true;
+            } else if (choice.equals("delete")) {
+                System.out.print("Enter the integer to delete from the AVL Tree: ");
+                int deleteVal = scanner.nextInt();
+                tree.root = tree.deleteNode(tree.root, deleteVal, log);
+                System.out.println(log.toString());
+                log.setLength(0); // Clear the log for the next deletion
+            } else {
+                try {
+                    int num = Integer.parseInt(choice);
+                    tree.root = tree.insertNode(tree.root, num, log);
+                    System.out.println(log.toString());
+                    log.setLength(0); // Clear the log for the next insertion
+                } catch (NumberFormatException e) {
+                    System.out.println("Invalid input. Please enter an integer or 'done' to finish.");
+                }
+            }
+        }
+    
+        // Display updated 1-D array representation
+        tree.updateTreeRepresentation();
+    
+        // Display the three tree traversals
+        System.out.println("\nPreorder Traversal:");
+        tree.preorderTraversal(tree.root);
+        System.out.println("\nInorder Traversal:");
+        tree.inorderTraversal(tree.root);
+        System.out.println("\nPostorder Traversal:");
+        tree.postorderTraversal(tree.root);
+    
+        // Ask if the user wants to try again
+        System.out.print("\nDo you want to try again? (yes/no): ");
+        String tryAgain = scanner.next();
+        if (tryAgain.equals("yes")) {
+            main(args); // Restart the program
+        }
+    
+        scanner.close();
+    }
+    
+}
