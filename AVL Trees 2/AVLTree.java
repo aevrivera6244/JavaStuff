@@ -283,7 +283,7 @@ AVLNode rebalanceRoot(AVLNode node, int rootValue) {
     }
 }
 
-class Main {
+class AVLTrees {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         AVLTree tree = new AVLTree();
